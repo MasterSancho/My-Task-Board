@@ -27,6 +27,32 @@ UI.prototype.addTaskToList = function (task) {
   list.appendChild(li);
 };
 
+// show alert
+UI.prototype.showAlert = function (message, className) {
+  // create div
+  const div = document.createElement('div');
+
+  // add classes
+  div.className = `alert ${className}`;
+
+  // add text
+  div.appendChild(document.createTextNode(message));
+
+  // get parent
+  const row = document.querySelector('.row');
+
+  // get form
+  const form = document.querySelector('#task-form');
+
+  // insert alert
+  row.insertBefore(div, form);
+
+  // timeout after 3 sec
+  setTimeout(function () {
+    document.querySelector('.alert').remove();
+  }, 3000);
+};
+
 // clear fields
 UI.prototype.clearFields = function () {
   document.getElementById('note').value = '';
@@ -49,10 +75,14 @@ document.getElementById('task-form').addEventListener('submit', function (e) {
 
   // validate
   if (note === '' || date === '' || time === '') {
-    alert('Failed');
+    // show error alert
+    ui.showAlert('Please fill in all fields', 'error');
   } else {
     // add task to list
     ui.addTaskToList(task);
+
+    // show success alert
+    ui.showAlert('Task Added!', 'success');
 
     // clear fields
     ui.clearFields();
