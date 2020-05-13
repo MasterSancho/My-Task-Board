@@ -47,11 +47,16 @@ document.getElementById('task-form').addEventListener('submit', function (e) {
   // instantiate UI
   const ui = new UI();
 
-  // add task to list
-  ui.addTaskToList(task);
+  // validate
+  if (note === '' || date === '' || time === '') {
+    alert('Failed');
+  } else {
+    // add task to list
+    ui.addTaskToList(task);
 
-  // clear fields
-  ui.clearFields();
+    // clear fields
+    ui.clearFields();
+  }
 
   e.preventDefault();
 });
