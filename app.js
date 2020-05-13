@@ -8,6 +8,11 @@ function Task(note, date, time) {
 // ui constructor
 function UI() {}
 
+// add task to list
+UI.prototype.addTaskToList = function (task) {
+  console.log(task);
+};
+
 // event listeners
 document.getElementById('task-form').addEventListener('submit', function (e) {
   // get form values
@@ -15,10 +20,14 @@ document.getElementById('task-form').addEventListener('submit', function (e) {
     date = document.getElementById('date').value,
     time = document.getElementById('time').value;
 
-  // instantiate book
+  // instantiate task
   const task = new Task(note, date, time);
 
-  console.log(task)
+  // instantiate UI
+  const ui = new UI();
+
+  // add task to list
+  ui.addTaskToList(task);
 
   e.preventDefault();
 });
