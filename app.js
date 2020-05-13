@@ -72,22 +72,53 @@ class UI {
 
 // local storage class
 class Store {
-  getTask() {
+  static getTasks() {
+    let tasks;
 
+    if (localStorage.getItem('tasks') === null) {
+      tasks = [];
+    } else {
+      tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+
+    return tasks;
   }
 
-  displayTask() {
+  static displayTasks() {
+    const tasks = Store.getTasks();
 
+    tasks.forEach(function (task) {
+      const ui = new UI();
+
+      // add task to UI
+      ui.addTaskToList(task);
+    });
   }
 
-  addTask() {
+  static addTask(task) {
+    const tasks = Store.getTasks();
 
+    tasks.push(task);
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 
-  removeTask() {
-    
+  static removeTask(note) {
+    console.log(note)
+    const tasks = Store.getTasks();
+
+    tasks.forEach(function (task, index) {
+      if (task.note === note) {
+        tasks.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 }
+
+// DOM load event
+document.addEventListener('DOMContentLoaded', Store.displayTasks);
 
 // event listeners for add task
 document.getElementById('task-form').addEventListener('submit', function (e) {
@@ -110,6 +141,9 @@ document.getElementById('task-form').addEventListener('submit', function (e) {
     // add task to list
     ui.addTaskToList(task);
 
+    // add to LC
+    Store.addTask(task);
+
     // show success alert
     ui.showAlert('Task Added!', 'success');
 
@@ -128,7 +162,10 @@ document.getElementById('task-list').addEventListener('click', function (e) {
   // delete task
   ui.deleteTask(e.target);
 
-  // show message add validation...if show alert
+  // remove from LC
+  Store.removeTask(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
+
+  // show message 
   ui.showAlert('Task Removed!', 'success');
 
   e.preventDefault();
