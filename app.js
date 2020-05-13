@@ -53,6 +53,13 @@ UI.prototype.showAlert = function (message, className) {
   }, 3000);
 };
 
+// delete task
+UI.prototype.deleteTask = function(target) {
+  if (target.className === 'delete') {
+    target.parentElement.parentElement.remove()
+  }
+}
+
 // clear fields
 UI.prototype.clearFields = function () {
   document.getElementById('note').value = '';
@@ -60,7 +67,7 @@ UI.prototype.clearFields = function () {
   document.getElementById('time').value = '';
 };
 
-// event listeners
+// event listeners for add task
 document.getElementById('task-form').addEventListener('submit', function (e) {
   // get form values
   const note = document.getElementById('note').value,
@@ -90,3 +97,18 @@ document.getElementById('task-form').addEventListener('submit', function (e) {
 
   e.preventDefault();
 });
+
+// event listener for delete
+document.getElementById('task-list').addEventListener('click', function(e) {
+
+  // instantiate UI
+  const ui = new UI()
+
+  // delete task
+  ui.deleteTask(e.target)
+
+  // show message add validation...if show alert
+  ui.showAlert('Task Removed!', 'success')
+
+  e.preventDefault()
+})
