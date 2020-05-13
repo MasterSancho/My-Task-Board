@@ -70,6 +70,25 @@ class UI {
   };
 }
 
+// local storage class
+class Store {
+  getTask() {
+
+  }
+
+  displayTask() {
+
+  }
+
+  addTask() {
+
+  }
+
+  removeTask() {
+    
+  }
+}
+
 // event listeners for add task
 document.getElementById('task-form').addEventListener('submit', function (e) {
   // get form values
