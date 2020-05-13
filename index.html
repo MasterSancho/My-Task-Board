@@ -8,18 +8,33 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
     />
+    <style>
+      .success, .error {
+        color: white;
+        padding: 5px;
+        margin: 5px 0 15px 0;
+      }
+
+      .success {
+        background: green;
+      }
+
+      .error {
+        background: red;
+      }
+    </style>
     <title>Task Board</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container row">
       <div class="row">
-      <h1>My Task Board</h1>
-      <form id="note-form">
-        <div class="five columns">
-          <label for="note">Note</label>
-          <textarea type="text" id="note" cols="30" rows="10" class="u-full-width"></textarea>
+        <h1>My Task Board</h1>
+        <form id="note-form">
+          <div class="five columns">
+            <label for="note">Note</label>
+            <textarea type="text" id="note" cols="30" rows="10" class="u-full-width"></textarea>
+          </div>
         </div>
-      </div>
         <div class="row">
           <div class="three columns">
             <label for="date">Date</label>
@@ -29,9 +44,14 @@
             <label for="time">Time</label>
             <input type="time" id="time" class="u-full-width" />
           </div>
-      </div>
+        </div>
+        <input type="submit" value="Add Note" class="four columns">
       </form>
-      <hr>
+      </div>
+
+        <ul id="note-list" class="row"></ul>
     </div>
+
+    <script src="app.js"></script>
   </body>
 </html>
