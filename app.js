@@ -1,5 +1,5 @@
 // book constructor
-function Note(note, date, time) {
+function Task(note, date, time) {
   this.note = note;
   this.date = date;
   this.time = time;
@@ -9,12 +9,16 @@ function Note(note, date, time) {
 function UI() {}
 
 // event listeners
-document.getElementById('note-form').addEventListener('submit', function (e) {
+document.getElementById('task-form').addEventListener('submit', function (e) {
+  // get form values
   const note = document.getElementById('note').value,
-        date = document.getElementById('date').value,
-        time = document.getElementById('time').value;
+    date = document.getElementById('date').value,
+    time = document.getElementById('time').value;
 
-  console.log(note, date, time);
+  // instantiate book
+  const task = new Task(note, date, time);
+
+  console.log(task)
 
   e.preventDefault();
 });
