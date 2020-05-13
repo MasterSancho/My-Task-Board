@@ -22,7 +22,7 @@ UI.prototype.addTaskToList = function (task) {
   <p><a href='#' class='delete'>X</a></P>
   `;
 
-  console.log(li);
+  list.appendChild(li);
 };
 
 // event listeners
@@ -40,6 +40,9 @@ document.getElementById('task-form').addEventListener('submit', function (e) {
 
   // add task to list
   ui.addTaskToList(task);
+
+  // clear fields
+  ui.clearFields();
 
   e.preventDefault();
 });
