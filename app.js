@@ -10,7 +10,11 @@ function UI() {}
 
 // event listeners
 document.getElementById('note-form').addEventListener('submit', function (e) {
-  console.log('test');
+  const note = document.getElementById('note').value,
+        date = document.getElementById('date').value,
+        time = document.getElementById('time').value;
+
+  console.log(note, date, time);
 
   e.preventDefault();
 });
