@@ -22,15 +22,17 @@ UI.prototype.addTaskToList = function (task) {
   <p><a href='#' class='delete'>X</a></P>
   `;
 
+  li.className = 'two columns';
+
   list.appendChild(li);
 };
 
 // clear fields
-UI.prototype.clearFields = function() {
-  document.getElementById('note').value = ''
-  document.getElementById('date').value = ''
-  document.getElementById('time').value = ''
-}
+UI.prototype.clearFields = function () {
+  document.getElementById('note').value = '';
+  document.getElementById('date').value = '';
+  document.getElementById('time').value = '';
+};
 
 // event listeners
 document.getElementById('task-form').addEventListener('submit', function (e) {
