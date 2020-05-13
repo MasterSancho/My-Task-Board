@@ -10,7 +10,6 @@ function UI() {}
 
 // add task to list
 UI.prototype.addTaskToList = function (task) {
-  console.log(task);
 };
 
 // event listeners
@@ -25,6 +24,8 @@ document.getElementById('task-form').addEventListener('submit', function (e) {
 
   // instantiate UI
   const ui = new UI();
+
+  console.log(ui)
 
   // add task to list
   ui.addTaskToList(task);
