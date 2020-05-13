@@ -8,21 +8,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
     />
-    <style>
-      .success, .error {
-        color: white;
-        padding: 5px;
-        margin: 5px 0 15px 0;
-      }
-
-      .success {
-        background: green;
-      }
-
-      .error {
-        background: red;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <title>Task Board</title>
   </head>
   <body>
@@ -35,17 +21,17 @@
             <textarea type="text" id="note" cols="30" rows="10" class="u-full-width"></textarea>
           </div>
           </div>
-          <div class="row">
+          <div class="row date">
             <div class="three columns">
               <label for="date">Date</label>
               <input type="date" id="date" class="u-full-width" />
             </div>
-            <div class="two columns">
+            <div class="two columns time">
               <label for="time">Time</label>
               <input type="time" id="time" class="u-full-width" />
             </div>
           </div>
-          <input type="submit" value="Add Task" class="four columns">
+          <input type="submit" value="Add Task" class="btn four columns btn">
       </form>
       </div>
 

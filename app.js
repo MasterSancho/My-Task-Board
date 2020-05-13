@@ -1,71 +1,74 @@
 // book constructor
-function Task(note, date, time) {
-  this.note = note;
-  this.date = date;
-  this.time = time;
+class Task {
+  constructor(note, date, time) {
+    this.note = note;
+    this.date = date;
+    this.time = time;
+  }
 }
 
 // ui constructor
-function UI() {}
+class UI {
+  // add task to list
+  addTaskToList = function (task) {
+    const list = document.getElementById('task-list');
 
-// add task to list
-UI.prototype.addTaskToList = function (task) {
-  const list = document.getElementById('task-list');
-  // create li element
-  const li = document.createElement('li');
+    // create li element
+    const li = document.createElement('li');
 
-  // insert task
-  li.innerHTML = `
+    // insert task
+    li.innerHTML = `
   <p>${task.note}</P>
   <p>${task.date}</P>
   <p>${task.time}</P>
   <p><a href='#' class='delete'>X</a></P>
   `;
 
-  li.className = 'two columns';
+    li.className = 'two columns';
 
-  list.appendChild(li);
-};
+    list.appendChild(li);
+  };
 
-// show alert
-UI.prototype.showAlert = function (message, className) {
-  // create div
-  const div = document.createElement('div');
+  // show alert
+  showAlert = function (message, className) {
+    // create div
+    const div = document.createElement('div');
 
-  // add classes
-  div.className = `alert ${className}`;
+    // add classes
+    div.className = `alert ${className}`;
 
-  // add text
-  div.appendChild(document.createTextNode(message));
+    // add text
+    div.appendChild(document.createTextNode(message));
 
-  // get parent
-  const row = document.querySelector('.row');
+    // get parent
+    const row = document.querySelector('.row');
 
-  // get form
-  const form = document.querySelector('#task-form');
+    // get form
+    const form = document.querySelector('#task-form');
 
-  // insert alert
-  row.insertBefore(div, form);
+    // insert alert
+    row.insertBefore(div, form);
 
-  // timeout after 3 sec
-  setTimeout(function () {
-    document.querySelector('.alert').remove();
-  }, 3000);
-};
+    // timeout after 3 sec
+    setTimeout(function () {
+      document.querySelector('.alert').remove();
+    }, 3000);
+  };
 
-// delete task
-UI.prototype.deleteTask = function(target) {
-  if (target.className === 'delete') {
-    target.parentElement.parentElement.remove()
-  }
+  // delete task
+  deleteTask = function (target) {
+    if (target.className === 'delete') {
+      target.parentElement.parentElement.remove();
+    }
+  };
+
+  // clear fields
+  clearFields = function () {
+    document.getElementById('note').value = '';
+    document.getElementById('date').value = '';
+    document.getElementById('time').value = '';
+  };
 }
-
-// clear fields
-UI.prototype.clearFields = function () {
-  document.getElementById('note').value = '';
-  document.getElementById('date').value = '';
-  document.getElementById('time').value = '';
-};
 
 // event listeners for add task
 document.getElementById('task-form').addEventListener('submit', function (e) {
@@ -99,16 +102,15 @@ document.getElementById('task-form').addEventListener('submit', function (e) {
 });
 
 // event listener for delete
-document.getElementById('task-list').addEventListener('click', function(e) {
-
+document.getElementById('task-list').addEventListener('click', function (e) {
   // instantiate UI
-  const ui = new UI()
+  const ui = new UI();
 
   // delete task
-  ui.deleteTask(e.target)
+  ui.deleteTask(e.target);
 
   // show message add validation...if show alert
-  ui.showAlert('Task Removed!', 'success')
+  ui.showAlert('Task Removed!', 'success');
 
-  e.preventDefault()
-})
+  e.preventDefault();
+});
